@@ -1,0 +1,31 @@
+services:
+  # Service Database MySQL bawaan Docker
+  db_kos:
+    image: mysql:8.0
+    container_name: database_kos
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: db_kos_suliati
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # MEMBACA FILE SQL YANG ADA DI VS CODE KAMU:
+      - ./db_kos_suliati.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # Service Backend Node.js/TypeScript Kamu
+  backend:
+    build: .
+    container_name: backend_kos_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db_kos
+
+# Bagian volume global agar data aman tersimpan di Docker
+volumes:
+  mysql_data: {}

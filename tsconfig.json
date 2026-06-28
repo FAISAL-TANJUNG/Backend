@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* File Layout */
+    "rootDir": "./src",                          
+    "outDir": "./dist",                         
+
+    /* Environment Settings */
+    "target": "ES2020",                         
+    "module": "commonjs",                        // Standar untuk Node.js Express
+    "lib": ["ESNext"],
+    "types": ["node"],
+
+    /* Interop System (KUNCI UNTUK MENGHILANGKAN ERROR IMPORT) */
+    "esModuleInterop": true,                     // Mengizinkan import express dari 'express'
+    "allowSyntheticDefaultImports": true,        
+    "moduleResolution": "node",                  // Agar TS bisa menemukan folder node_modules
+    "resolveJsonModule": true,
+
+    /* Stricter Typechecking Options */
+    "strict": true,
+    "noImplicitAny": false,                      // Longgarkan sedikit agar tidak terlalu cerewet saat dev
+    "skipLibCheck": true,                        // Melewati pengecekan library di node_modules
+    "forceConsistentCasingInFileNames": true,
+
+    /* Other Options */
+    "sourceMap": true,
+    "declaration": true
+  },
+  "include": ["src/**/*"],                       // Pastikan semua file di folder src terbaca
+  "exclude": ["node_modules"]
+}
